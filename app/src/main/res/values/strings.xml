@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CommonBluetoothApplication</string>
+    <string name="sHomeTitle">首页</string>
 </resources>
