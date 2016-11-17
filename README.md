@@ -6,11 +6,11 @@
     3、在MainActiviy中 为扫描BLE 设备方法
     4、DeviceModel 为设置Model
 
-#BLE协议通信
-##检查蓝牙是否支持BLE协议
+# 1、BLE协议通信
+##1.1 检查蓝牙是否支持BLE协议
      boolean isBleUsed = getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
 
-## 初始化操作
+##1.2 初始化操作
      //获取 BluetoothManager
      mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
      //获取 BluetoothAdapter
@@ -24,8 +24,8 @@
        }
 
 
-## 开启扫描
-###  开始扫描与停止
+##1.3 开启扫描
+###1.3.1 开始扫描与停止
         /**
          * 扫描BLE设备
          */
@@ -40,7 +40,7 @@
             }
 
         }
-###  扫描到BLE设备回调方法
+###1、3、2 扫描到BLE设备回调方法
     //扫描到BLE设备的回调
         private BluetoothAdapter.LeScanCallback mScanCallback = new BluetoothAdapter.LeScanCallback() {
 
@@ -64,8 +64,8 @@
         };
 
 
-##连接BLE设备
-###获取BLE设备
+##1.4 连接BLE设备
+###1.4.1 获取BLE设备
     点击列表跳转到设备连接页面，将BLE设备信息传递
 
     //对应的BLE蓝牙设备
@@ -130,7 +130,7 @@
     当连接成功后，会回调方法 onServicesDiscovered
     当状态信息为 status == BluetoothGatt.GATT_SUCCESS 的时候，可以获取到外围设备中提供的服务
 
-### 处理获取扫描到的外围设备的服务
+###1.4.2 处理获取扫描到的外围设备的服务
     private void dataInitFunction() {
             //获取 外围设备中提供的服务
             List<BluetoothGattService> mBluetoothGattServices = mBluetoothGatt.getServices();
@@ -155,7 +155,7 @@
             }
         }
 
-### 发送消息到 外围设备中
+###1.4.3 发送消息到 外围设备中
         private String mServiceUUIDString = "50b168cf-85fa-43e5-9665-a0faefb42a89";
         private String mServiceUUID = "beb07058-7edd-46de-af18-a7d4ae069e53";
 
@@ -188,7 +188,7 @@
             }
 
         }
-### 读取外围设备中的信息
+###1.4.4 读取外围设备中的信息
         private String mServiceUUIDString = "50b168cf-85fa-43e5-9665-a0faefb42a89";
         private String mServiceUUID = "beb07058-7edd-46de-af18-a7d4ae069e53";
 
