@@ -35,7 +35,8 @@ android {
                     'src/main/res',
                     'src/main/res/layout',
                     'src/main/res/layout/base',
-                    'src/main/res/layout/home'
+                    'src/main/res/layout/ble',
+                    'src/main/res/layout/home',
             ]
 
         }

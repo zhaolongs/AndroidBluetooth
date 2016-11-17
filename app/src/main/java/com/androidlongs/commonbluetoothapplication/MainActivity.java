@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -130,12 +131,6 @@ public class MainActivity extends Activity {
 
             //开始扫描BLE设备
             scanBleDevice(true);
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    scanBleDevice(false);
-                }
-            }, 5000);
         }
     }
 
@@ -147,17 +142,29 @@ public class MainActivity extends Activity {
     /**
      * 扫描BLE设备
      */
-    private void scanBleDevice(boolean isScanBleDevice) {
-        if (!isScanBleDevice) {
+    private void scanBleDevice(boolean isScan) {
+        if (isScan) {
             //开始扫描
             mBluetoothAdapter.startLeScan(mScanCallback);
             //更新标识
             isScanBleDevice = true;
+
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //停止扫描
+                    mBluetoothAdapter.stopLeScan(mScanCallback);
+                    //更新标识
+                    isScanBleDevice = false;
+                }
+            },10000);
+
         } else {
             //停止扫描
             mBluetoothAdapter.stopLeScan(mScanCallback);
             //更新标识
             isScanBleDevice = false;
+
         }
 
     }
@@ -227,8 +234,24 @@ public class MainActivity extends Activity {
         public void onItemClick(View v, int position) {
             Log.e("BLE","click "+position);
 
+            //取消扫描
+            mHandler.removeCallbacksAndMessages(0);
+            //
+            if (isScanBleDevice) {
+                isScanBleDevice = false;
+                mBluetoothAdapter.stopLeScan(mScanCallback);
+            }
+
             //
             DeviceModel deviceModel = mDeviceModelList.get(position);
+
+            Intent intent = new Intent(MainActivity.this, BleConnectionActivity.class);
+            //封装数据
+            intent.putExtra("model",deviceModel);
+
+            MainActivity.this.startActivity(intent);
+
+
 
 
         }
