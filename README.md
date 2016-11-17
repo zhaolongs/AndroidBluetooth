@@ -5,6 +5,20 @@
     2、在BleConnectionActivity 中，是依据 ble包中的信息提取出来的 BLE设备连接通迅的
     3、在MainActiviy中 为扫描BLE 设备方法
     4、DeviceModel 为设置Model
+#权限申请
+       <uses-permission android:name="android.permission.BLUETOOTH"/>
+       <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+       <uses-feature
+            android:name="android.hardware.bluetooth_le"
+            android:required="true"/>
+
+       最好添加上以下权限，以适配某些机型
+       <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+       <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+       <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
 # 1、BLE协议通信
 ##1.1 检查蓝牙是否支持BLE协议
