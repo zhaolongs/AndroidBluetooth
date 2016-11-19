@@ -1,4 +1,4 @@
-package com.androidlongs.commonbluetoothapplication;
+package com.androidlongs.commonbluetoothapplication.customble;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
@@ -15,6 +15,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.androidlongs.commonbluetoothapplication.DeviceModel;
+import com.androidlongs.commonbluetoothapplication.R;
 
 import java.util.List;
 import java.util.UUID;
@@ -86,6 +89,7 @@ public class BleConnectionActivity extends Activity {
 
         //创建连接
         mBluetoothGatt = mBluetoothDevice.connectGatt(this, true, mGattCallback);
+
     }
 
 
@@ -93,7 +97,6 @@ public class BleConnectionActivity extends Activity {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
             if (newState == BluetoothProfile.STATE_CONNECTED) {
-
                 Log.i(TAG, "Connected to GATT server.");
                 Log.i(TAG, "Attempting to start service discovery:" +
                         mBluetoothGatt.discoverServices());
@@ -103,7 +106,6 @@ public class BleConnectionActivity extends Activity {
                 Log.i(TAG, "Disconnected from GATT server.");
             }
         }
-
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
@@ -114,21 +116,17 @@ public class BleConnectionActivity extends Activity {
                 Log.w(TAG, "onServicesDiscovered gatt other received: " + status);
             }
         }
-
         @Override
         public void onCharacteristicRead(BluetoothGatt gatt,
                                          BluetoothGattCharacteristic characteristic,
                                          int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
 
-
             }
-
             byte[] value = characteristic.getValue();
 
             Log.d("ble--", "ble -- " + "收到消息 " + new String(value));
         }
-
         @Override
         public void onCharacteristicChanged(BluetoothGatt gatt,
                                             BluetoothGattCharacteristic characteristic) {

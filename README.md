@@ -242,3 +242,37 @@
 
              Log.d("ble--", "ble -- " + "收到消息 " + new String(value));
          }
+
+
+ #经典蓝牙
+ ##初始化操作
+    1、打开蓝牙的方式有两种，这里采用 enable方法，另一种方法是使用广播意图的形式来打开，两者的区别是，
+    前者不会提示用户，后者会提示用户选择性的打开蓝牙
+    2、BluetoothAdapter 代表本地的蓝牙设备，通过此类可以让用户能执行基本的蓝牙任务
+    3、在这里，蓝牙的状态改变，系统会发送广播通知，所以我们可以注册广播接收者来监听蓝牙状态的改变
+
+    public boolean initBlueFunction() {
+            //获取 BluetoothAdapter
+            mDefaultAdapter = BluetoothAdapter.getDefaultAdapter();
+            if (mDefaultAdapter == null) {
+                //不支持蓝牙功能
+                return false;
+            }
+            //蓝牙是否打开
+            boolean enabled = mDefaultAdapter.isEnabled();
+
+            if (enabled) {
+                //蓝牙已打开
+                //扫描设备
+
+            } else {
+                //蓝牙未打开
+                //打开蓝牙设备
+                mDefaultAdapter.enable();
+            }
+
+            return true;
+    }
+
+    //蓝牙状态改变
+    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);

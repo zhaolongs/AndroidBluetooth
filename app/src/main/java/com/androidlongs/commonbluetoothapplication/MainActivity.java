@@ -20,6 +20,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.androidlongs.commonbluetoothapplication.customble.BleConnectionActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -118,6 +120,7 @@ public class MainActivity extends Activity {
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothManager mBluetoothManager;
 
+    //初始化蓝牙配制操作
     private void initBluetooth() {
         //获取 BluetoothManager
         mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -128,7 +131,6 @@ public class MainActivity extends Activity {
             Log.e("ble", "设备不支持蓝牙");
             Toast.makeText(this, "设备不支持蓝牙", Toast.LENGTH_SHORT).show();
         } else {
-
             //开始扫描BLE设备
             scanBleDevice(true);
         }
@@ -149,6 +151,7 @@ public class MainActivity extends Activity {
             //更新标识
             isScanBleDevice = true;
 
+            //扫描10秒时间然后 停止扫描
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -164,9 +167,7 @@ public class MainActivity extends Activity {
             mBluetoothAdapter.stopLeScan(mScanCallback);
             //更新标识
             isScanBleDevice = false;
-
         }
-
     }
 
 
@@ -197,6 +198,8 @@ public class MainActivity extends Activity {
         }
     }
 
+    //保存设备到map集合中
+    //DeviceModel 为自定义蓝牙设备类
     private ConcurrentHashMap<String, DeviceModel> mModelDeviceMap = new ConcurrentHashMap<>();
     //扫描到BLE设备的回调
     private BluetoothAdapter.LeScanCallback mScanCallback = new BluetoothAdapter.LeScanCallback() {

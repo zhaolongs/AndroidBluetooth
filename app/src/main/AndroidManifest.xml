@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ble.BleBluetoothConnectActivity"/>
-        <activity android:name=".BleConnectionActivity"/>
+        <activity android:name=".customble.BleConnectionActivity"/>
     </application>
 
 </manifest>
