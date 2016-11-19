@@ -276,3 +276,48 @@
 
     //蓝牙状态改变
     intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+
+ ##开启扫描 其他蓝牙设备
+ ###开始扫描
+      private void startDiscovery() {
+            if (mDefaultAdapter != null) {
+                //判断当前是否正在扫描
+                boolean discovering = mDefaultAdapter.isDiscovering();
+                if (!discovering) {
+                    //开启扫描
+                    mDefaultAdapter.startDiscovery();
+                }
+            }
+      }
+
+      开始扫描蓝牙设备，系统发送广播消息通知
+      //开始扫描设备
+      intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+ ###发现设备
+      当扫描到设备的时候 ，系统会发送广播消息通知
+
+      intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
+      广播接收，获取设备
+      if (TextUtils.equals(action, BluetoothDevice.ACTION_FOUND)) {
+             //发现设备
+            //获取蓝牙对象
+           BluetoothDevice devices = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+      }
+ ###扫描完成
+      扫描完成后，系统会发送广播消息通知
+      //扫描完成
+      intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+
+ ##取消扫描
+     //关闭扫描
+     public boolean stopBluetoothDiscovery() {
+         if (mDefaultAdapter != null) {
+             boolean discovering = mDefaultAdapter.isDiscovering();
+             if (discovering) {
+                 return mDefaultAdapter.cancelDiscovery();
+             }
+
+         }
+         return true;
+     }
