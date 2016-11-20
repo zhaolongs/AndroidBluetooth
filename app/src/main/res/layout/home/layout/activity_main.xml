@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.androidlongs.commonbluetoothapplication.MainActivity">
+    tools:context="com.androidlongs.commonbluetoothapplication.main.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

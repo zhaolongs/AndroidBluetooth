@@ -1,4 +1,4 @@
-package com.androidlongs.commonbluetoothapplication.customble;
+package com.androidlongs.commonbluetoothapplication.commonble;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androidlongs.commonbluetoothapplication.DeviceModel;
+import com.androidlongs.commonbluetoothapplication.model.DeviceModel;
 import com.androidlongs.commonbluetoothapplication.R;
 
 import java.util.List;

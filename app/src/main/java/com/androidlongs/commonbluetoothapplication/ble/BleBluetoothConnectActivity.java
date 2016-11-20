@@ -22,7 +22,7 @@ import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androidlongs.commonbluetoothapplication.DeviceModel;
+import com.androidlongs.commonbluetoothapplication.model.DeviceModel;
 import com.androidlongs.commonbluetoothapplication.R;
 
 import java.util.ArrayList;

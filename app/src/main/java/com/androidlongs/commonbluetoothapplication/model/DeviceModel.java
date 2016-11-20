@@ -1,4 +1,4 @@
-package com.androidlongs.commonbluetoothapplication;
+package com.androidlongs.commonbluetoothapplication.model;
 
 import android.bluetooth.BluetoothDevice;
 import android.os.Parcel;

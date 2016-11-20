@@ -1,4 +1,4 @@
-package com.androidlongs.commonbluetoothapplication;
+package com.androidlongs.commonbluetoothapplication.main;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -20,7 +20,9 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.androidlongs.commonbluetoothapplication.customble.BleConnectionActivity;
+import com.androidlongs.commonbluetoothapplication.R;
+import com.androidlongs.commonbluetoothapplication.commonble.BleConnectionActivity;
+import com.androidlongs.commonbluetoothapplication.model.DeviceModel;
 
 import java.util.ArrayList;
 import java.util.List;
