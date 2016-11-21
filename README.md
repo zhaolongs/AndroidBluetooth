@@ -1,3 +1,5 @@
+# AndroidBluetooth 应用体验
+   http://sj.qq.com/myapp/detail.htm?apkName=com.chat.blue.androidlongs.bluechatapplication
 # AndroidBluetooth
 1、安卓蓝牙聊天通迅 2、安卓BLE通信
 ## 说明
