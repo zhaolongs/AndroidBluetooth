@@ -7,6 +7,13 @@
     2、在BleConnectionActivity 中，是依据 ble包中的信息提取出来的 BLE设备连接通迅的
     3、在MainActiviy中 为扫描BLE 设备方法
     4、DeviceModel 为设置Model
+#综述 
+##
+   BLE 是Bluetooth Low Energy的缩写 
+   BL不再支持传统的 BR/RED协议 ，在BLE应用中 ,所有的协议 服务都是基于Gatt
+## BLE协议蓝牙分类 
+   单模 只支持BLE协议数据传输
+   双模 支持经曲蓝牙协议与BLE协议数据传输
 #权限申请
        <uses-permission android:name="android.permission.BLUETOOTH"/>
        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -22,7 +29,7 @@
        <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 
-# 1、BLE协议通信
+# 1、Android 中BLE协议通信
 ##1.1 检查蓝牙是否支持BLE协议
      boolean isBleUsed = getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
 
