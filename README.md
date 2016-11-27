@@ -63,12 +63,10 @@
                 //停止扫描
                 mBluetoothAdapter.stopLeScan(mScanCallback);
             }
-
         }
 ###1、3、2 扫描到BLE设备回调方法
     //扫描到BLE设备的回调
         private BluetoothAdapter.LeScanCallback mScanCallback = new BluetoothAdapter.LeScanCallback() {
-
             @Override
             public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
                 if (Looper.myLooper() == Looper.getMainLooper()) {
@@ -82,8 +80,6 @@
 
                         }
                     });
-
-
                 }
             }
         };
