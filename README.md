@@ -15,6 +15,8 @@
    单模 只支持BLE协议数据传输
    双模 支持经曲蓝牙协议与BLE协议数据传输
 #权限申请
+
+```
        <uses-permission android:name="android.permission.BLUETOOTH"/>
        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
        <uses-feature
@@ -27,13 +29,16 @@
        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
        <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+```
 
 # 1、Android 中BLE协议通信
 ##1.1 检查蓝牙是否支持BLE协议
-     boolean isBleUsed = getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
 
+```
+     boolean isBleUsed = getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
+```
 ##1.2 初始化操作
+```
      //获取 BluetoothManager
      mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
      //获取 BluetoothAdapter
@@ -47,10 +52,12 @@
        }
 
      BluetoothAdapter 代表要地的蓝牙适配器设备，通过此类可以让用户能用执行基本的蓝牙任务
-
+```
 
 ##1.3 开启扫描
 ###1.3.1 开始扫描与停止
+
+```
         /**
          * 扫描BLE设备
          */
@@ -64,6 +71,7 @@
                 mBluetoothAdapter.stopLeScan(mScanCallback);
             }
         }
+```
 ###1、3、2 扫描到BLE设备回调方法
     //扫描到BLE设备的回调
         private BluetoothAdapter.LeScanCallback mScanCallback = new BluetoothAdapter.LeScanCallback() {
