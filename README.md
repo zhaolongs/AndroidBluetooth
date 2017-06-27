@@ -32,12 +32,12 @@
 ```
 
 # 1、Android 中BLE协议通信
-##1.1 检查蓝牙是否支持BLE协议
+## 1.1 检查蓝牙是否支持BLE协议
 
 ```
      boolean isBleUsed = getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
 ```
-##1.2 初始化操作
+## 1.2 初始化操作
 ```
      //获取 BluetoothManager
      mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -54,8 +54,8 @@
      BluetoothAdapter 代表要地的蓝牙适配器设备，通过此类可以让用户能用执行基本的蓝牙任务
 ```
 
-##1.3 开启扫描
-###1.3.1 开始扫描与停止
+## 1.3 开启扫描
+### 1.3.1 开始扫描与停止
 
 ```
         /**
@@ -72,7 +72,7 @@
             }
         }
 ```
-###1、3、2 扫描到BLE设备回调方法
+### 1、3、2 扫描到BLE设备回调方法
     //扫描到BLE设备的回调
         private BluetoothAdapter.LeScanCallback mScanCallback = new BluetoothAdapter.LeScanCallback() {
             @Override
@@ -93,8 +93,8 @@
         };
 
 
-##1.4 连接BLE设备
-###1.4.1 获取BLE设备
+## 1.4 连接BLE设备
+### 1.4.1 获取BLE设备
     点击列表跳转到设备连接页面，将BLE设备信息传递
 
     //对应的BLE蓝牙设备
@@ -159,7 +159,7 @@
     当连接成功后，会回调方法 onServicesDiscovered
     当状态信息为 status == BluetoothGatt.GATT_SUCCESS 的时候，可以获取到外围设备中提供的服务
 
-###1.4.2 处理获取扫描到的外围设备的服务
+### 1.4.2 处理获取扫描到的外围设备的服务
     private void dataInitFunction() {
             //获取 外围设备中提供的服务
             List<BluetoothGattService> mBluetoothGattServices = mBluetoothGatt.getServices();
@@ -184,7 +184,7 @@
             }
         }
 
-###1.4.3 发送消息到 外围设备中
+### 1.4.3 发送消息到 外围设备中
         private String mServiceUUIDString = "50b168cf-85fa-43e5-9665-a0faefb42a89";
         private String mServiceUUID = "beb07058-7edd-46de-af18-a7d4ae069e53";
 
@@ -217,7 +217,7 @@
             }
 
         }
-###1.4.4 读取外围设备中的信息
+### 1.4.4 读取外围设备中的信息
         private String mServiceUUIDString = "50b168cf-85fa-43e5-9665-a0faefb42a89";
         private String mServiceUUID = "beb07058-7edd-46de-af18-a7d4ae069e53";
 
@@ -259,8 +259,8 @@
          }
 
 
- #经典蓝牙
- ##初始化操作
+ # 经典蓝牙
+ ## 初始化操作
     1、打开蓝牙的方式有两种，这里采用 enable方法，另一种方法是使用广播意图的形式来打开，两者的区别是，
     前者不会提示用户，后者会提示用户选择性的打开蓝牙
     2、BluetoothAdapter 代表本地的蓝牙设备，通过此类可以让用户能执行基本的蓝牙任务
@@ -292,8 +292,8 @@
     //蓝牙状态改变
     intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
 
- ##开启扫描 其他蓝牙设备
- ###开始扫描
+ ## 开启扫描 其他蓝牙设备
+ ### 开始扫描
       private void startDiscovery() {
             if (mDefaultAdapter != null) {
                 //判断当前是否正在扫描
@@ -308,7 +308,7 @@
       开始扫描蓝牙设备，系统发送广播消息通知
       //开始扫描设备
       intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
- ###发现设备
+ ### 发现设备
       当扫描到设备的时候 ，系统会发送广播消息通知
 
       intentFilter.addAction(BluetoothDevice.ACTION_FOUND);
@@ -318,13 +318,13 @@
             //获取蓝牙对象
            BluetoothDevice devices = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
       }
- ###扫描完成
+ ### 扫描完成
       扫描完成后，系统会发送广播消息通知
       //扫描完成
       intentFilter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 
 
- ##取消扫描
+ ## 取消扫描
      //关闭扫描
      public boolean stopBluetoothDiscovery() {
          if (mDefaultAdapter != null) {
@@ -336,7 +336,7 @@
          }
          return true;
      }
-##蓝牙设备接入监听
+## 蓝牙设备接入监听
       当两个设备已配对后，对方可直接进行蓝牙连接，那么本方将为蓝牙设备接入
       public ConcurrentHashMap<String, BluetoothSocket> mSocketConcurrentHashMap = new ConcurrentHashMap<>();
         /**
@@ -406,7 +406,7 @@
             ExectorManager.getInstance().addTask(runnable);
     }
 
-##连接其他设备
+## 连接其他设备
     //连接设备
     public void connectDevice(BluetoothDevice device) {
             if (device.getBondState() == BluetoothDevice.BOND_NONE) {
@@ -467,7 +467,7 @@
   BluetoothSocket的connect方法，是尝试连接到远程设备，该方法将阻塞，直到一个连接建立或者失效，如果该方法没有返回异常值，则该端口现在已经建立，
     当设备下在进行时，创建对远程蓝牙设备的新的连接将不可被尝试
 
-##接收蓝牙消息监听
+## 接收蓝牙消息监听
     private boolean isReciviceMsg = true;
 
         //接收蓝牙消息监听
@@ -527,7 +527,7 @@
             ExectorManager.getInstance().addTask(runnable);
     }
     其中，ExectorManager是线程池管理子线程轮循任务
-##发送消息
+## 发送消息
     当两个设备连接后，就可以进行省沟通
     发送普通文本消息
         /**
